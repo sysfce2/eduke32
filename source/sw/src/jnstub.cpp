@@ -328,6 +328,11 @@ ToggleSprites()
 }
 
 
+void ExtPreDraw3dScreen(void)
+{
+}
+
+
 void
 DoAutoSize(tspriteptr_t tspr)
 {
