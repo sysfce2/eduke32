@@ -2082,8 +2082,6 @@ static int32_t ror_sprite = -1;
 
 static int editorFindMatchingSE40(uspriteptr_t sp)
 {
-    int const findTag = sp->lotag == 40 ? 41 : 40;
-
     for (int spriteNum = 0; spriteNum < Numsprites; spriteNum++)
         if (sprite[spriteNum].picnum == SECTOREFFECTOR && (uspriteptr_t)&sprite[spriteNum] != sp && (sprite[spriteNum].lotag == 40 || sprite[spriteNum].lotag == 41) && sprite[spriteNum].hitag == sp->hitag)
             return spriteNum;
