@@ -553,7 +553,6 @@ typedef FILE BFILE;
 
 #define BMAX_PATH 256
 
-#define Bassert assert
 #define Bmalloc malloc
 #define Bcalloc calloc
 #define Brealloc realloc
@@ -616,6 +615,13 @@ typedef FILE BFILE;
 
 
 ////////// Standard library wrappers //////////
+
+#ifdef NDEBUG
+// keep side effects and variable usage consistent in all build modes
+# define Bassert(x) (void)(x)
+#else
+# define Bassert assert
+#endif
 
 #ifdef __ANDROID__
 # define BS_IWRITE S_IWUSR
