@@ -132,6 +132,10 @@
 # endif
 #endif
 
+#ifdef HAVE_CXX11_HEADERS
+template <typename... Args> static inline void SILENCE_UNUSED(Args const & ...) noexcept {}
+#endif
+
 #ifdef __GNUC__
 # define UNUSED(x) UNUSED_ ## x __attribute__((unused))
 # define PRINTF_FORMAT(stringindex, firstargindex) __attribute__((format (printf, stringindex, firstargindex)))
