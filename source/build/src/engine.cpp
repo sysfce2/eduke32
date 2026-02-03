@@ -5528,8 +5528,13 @@ static void classicDrawSprite(int32_t snum)
 
     tilenum = tspr->picnum;
 
-    if (tsprflags & TSPR_FLAGS_SLAB)
-        vtilenum = tilenum; // if the game wants voxels, it gets voxels
+    if (tsprflags & TSPR_FLAGS_SLAB) // if the game wants a voxel, it gets a voxel
+    {
+        if ((unsigned)tilenum < MAXVOXELS)
+            vtilenum = tilenum;
+        else
+            tsprflags &= ~TSPR_FLAGS_SLAB; // avoid crashing if the voxel ID is OOB
+    }
     else if (!(cstat & CSTAT_SPRITE_ALIGNMENT_FLOOR) && usevoxels && tiletovox[tilenum] != -1 && spritenum != -1 && !(spriteext[spritenum].flags&SPREXT_NOTMD))
     {
         vtilenum = tiletovox[tilenum];
