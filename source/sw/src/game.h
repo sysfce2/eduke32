@@ -2351,9 +2351,9 @@ void DrawMenuLevelScreen(void); // game.c
 void DebugWriteString(char *string);    // game.c
 void ManualPlayerInsert(PLAYERp pp);    // game.c
 
-template <typename... Args>
+template <size_t N, typename... Args>
 static FORCE_INLINE void
-TerminateWithMsg(int code, const char *fmt, const Args &... args)
+TerminateWithMsg(int code, const char (&fmt)[N], const Args &... args)
 {
     TerminateGame();
 
