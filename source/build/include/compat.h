@@ -107,6 +107,10 @@
 # define CXXSTD 1
 #endif
 
+#if CXXSTD >= 2011 || EDUKE32_MSVC_PREREQ(1800)
+// MSVC does not properly identify C++11 support
+# define HAVE_CXX11_HEADERS
+#endif
 
 ////////// Language and compiler feature polyfills //////////
 
@@ -484,12 +488,10 @@ defined __x86_64__ || defined __amd64__ || defined _M_X64 || defined _M_IA64 || 
 
 #ifdef __cplusplus
 # include <limits>
-# if CXXSTD >= 2011 || EDUKE32_MSVC_PREREQ(1800)
+# ifdef HAVE_CXX11_HEADERS
 #  include <algorithm>
 #  include <functional>
 #  include <type_traits>
-// we need this because MSVC does not properly identify C++11 support
-#  define HAVE_CXX11_HEADERS
 # endif
 #endif
 
